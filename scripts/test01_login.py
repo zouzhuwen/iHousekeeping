@@ -27,7 +27,6 @@ class TestLogin(unittest.TestCase):
 #     2.3 创建测试方法
     def test01_login_success(self):
         #调用登录接口获取登录信息，并进行断言
-
         response = self.login_api.login(self.session,"13500000000","e52f073160e5604f72b24a7d6df0d526b5c0b0e2fa7ecac31ca45223ebe9a0d1")
         print(response.json())
 
@@ -36,7 +35,21 @@ class TestLogin(unittest.TestCase):
         self.assertIn("Success",response.json().get("returnMsg"))
 
     def test02_login_user_isnot_exist(self):
-        pass
+        # 调用登录接口获取登录信息，并进行断言
+        response = self.login_api.login(self.session, "13500009999",
+                                        "e52f073160e5604f72b24a7d6df0d526b5c0b0e2fa7ecac31ca45223ebe9a0d1")
+        print(response.json())
+
+        self.assertEqual(200, response.status_code)
+        self.assertEqual("IHK14", response.json().get("returnCode"))
+        self.assertIn("用户不存在", response.json().get("returnMsg"))
 
     def test03_login_password_error(self):
-        pass
+        # 调用登录接口获取登录信息，并进行断言
+        response = self.login_api.login(self.session, "13500000000",
+                                        "1e52f073160e5604f72b24a7d6df0d526b5c0b0e2fa7ecac31ca45223ebe9a0d1")
+        print(response.json())
+
+        self.assertEqual(200, response.status_code)
+        self.assertEqual("IHKER04", response.json().get("returnCode"))
+        self.assertIn("账号或密码有误，请重新输入。提示：账号或密码输入错误超过5次，系统将锁定30分钟", response.json().get("returnMsg"))
