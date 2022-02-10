@@ -11,27 +11,26 @@
 
 # 1、导包
 import json
-import os
-from app import BASE_DIR
 import requests
 import unittest
+from tools.dbutil import DBUtil
 from api.login import LoginAPI
 from parameterized.parameterized import parameterized
 
 #构造测试数据
 def  build_data():
-    file = BASE_DIR+"/data/login.json"
+    sql = "select * from t_login;"
+    db_data =DBUtil.exe_sql(sql)
+    print(db_data)
     test_data = []
-    with open(file,encoding='utf-8') as f :
-        json_data = json.load(f)
-        for  case_data in json_data :
-            loginName = case_data.get("loginName")
-            password = case_data.get("password")
-            status_code = case_data.get("status_code")
-            returnCode = case_data.get("returnCode")
-            returnMsg = case_data.get("returnMsg")
+    for  case_data in db_data :
+        loginName = case_data[2]
+        password = case_data[3]
+        status_code = case_data[4]
+        returnCode = case_data.get[5]
+        returnMsg = case_data[6]
 
-            test_data.append((loginName, password, status_code, returnCode, returnMsg))
+        test_data.append((loginName, password, status_code, returnCode, returnMsg))
     return test_data
 
 # 2、创建测试类

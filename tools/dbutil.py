@@ -14,8 +14,8 @@ class DBUtil():
             cls.__conn = pymysql.connect(host="localhost",
                                          port=3306,
                                          user="root",
-                                         password="root",
-                                         database="books")
+                                         password="123456",
+                                         database="book")
         return cls.__conn
 
     # 获取游标
