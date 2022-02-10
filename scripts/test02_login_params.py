@@ -17,9 +17,11 @@ import unittest
 from api.login import LoginAPI
 from parameterized.parameterized import parameterized
 
+path = "D:\API\iHousekeeping"
+
 #构造测试数据
 def  build_data():
-    file = "../data/login.json"
+    file = "D:\API\iHousekeeping/data/login.json"
     test_data = []
     with open(file,encoding='utf-8') as f :
         json_data = json.load(f)
@@ -34,7 +36,7 @@ def  build_data():
     return test_data
 
 # 2、创建测试类
-class TestLogin(unittest.TestCase):
+class TestLogin2(unittest.TestCase):
 #     2.1、前置处理
     def setUp(self):
         self.login_api = LoginAPI()     #实例化接口类
