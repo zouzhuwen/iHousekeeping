@@ -68,13 +68,13 @@
     "returnMsg": "参数异常"
   },{
     "desc": "不传password参数",
-    "loginName":"135000000000",
+    "loginName":"13500000000",
     "password":null,
     "status_code": 200,
-    "returnCode": "IHK14",
-    "returnMsg": "用户不存在"
+    "returnCode": "500",
+    "returnMsg": "系统处理异常，请联系管理员！"
   },{
-    "desc": "不传password参数",
+    "desc": "不传loginName和password参数",
     "loginName":null,
     "password":null,
     "status_code": 200,
